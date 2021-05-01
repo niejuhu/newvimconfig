@@ -36,6 +36,9 @@ set nowritebackup
 set nu
 set belloff=all
 
+set colorcolumn=80
+hi ColorColumn ctermbg=grey guibg=lightgrey
+
 " Give more space for displaying messages.
 set cmdheight=2
 
@@ -58,3 +61,4 @@ endif
 source ~/.myvimrc/coc.vim
 source ~/.myvimrc/python.vim
 source ~/.myvimrc/cpp.vim
+source ~/.myvimrc/js.vim
