@@ -36,6 +36,11 @@ set nowritebackup
 set nu
 set belloff=all
 
+set background=dark
+
+set splitright
+set splitbelow
+
 set colorcolumn=80
 hi ColorColumn ctermbg=grey guibg=lightgrey
 
