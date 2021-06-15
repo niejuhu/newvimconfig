@@ -137,3 +137,6 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " Coc explorer
 nmap <leader>e :CocCommand explorer<CR>
+
+" Coc pairs
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"

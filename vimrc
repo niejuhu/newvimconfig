@@ -1,9 +1,10 @@
 call plug#begin('~/.vim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vim-airline/vim-airline'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'joshdick/onedark.vim'
-"Plug 'Raimondi/delimitMate'
+Plug 'sainnhe/sonokai'
 Plug 'Chiel92/vim-autoformat'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " delimitMate
@@ -11,7 +12,7 @@ call plug#end()
 "let g:delimitMate_expand_cr = 1
 "let g:delimitMate_expand_space = 1
 
-" autoformat
+""""""""""""""" autoformat
 noremap <F3> :Autoformat<cr>
 " au BufWrite * :Autoformat
 "let g:autoformat_verbosemode=1
@@ -22,6 +23,18 @@ let g:formatdef_my_custom_cpp = '"clang-format --style=Google"'
 let g:formatters_c = ['my_custom_cpp']
 let g:formatters_cpp = ['my_custom_cpp']
 
+"""""""""""""" sonokai
+" Important!!
+if has('termguicolors')
+  set termguicolors
+endif
+" The configuration options should be placed before `colorscheme sonokai`.
+let g:sonokai_style = 'andromeda'
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 1
+
+""""""""""""" airline
+let g:airline#extensions#hunks#enabled = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Remap leader
@@ -39,6 +52,7 @@ set nu
 set belloff=all
 
 set background=dark
+colorscheme sonokai
 
 set splitright
 set splitbelow
