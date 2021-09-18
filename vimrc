@@ -1,27 +1,10 @@
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-Plug 'joshdick/onedark.vim'
 Plug 'sainnhe/sonokai'
-Plug 'Chiel92/vim-autoformat'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
-" delimitMate
-"au FileType python let b:delimitMate_nesting_quotes = ['"']
-"let g:delimitMate_expand_cr = 1
-"let g:delimitMate_expand_space = 1
-
-""""""""""""""" autoformat
-noremap <F3> :Autoformat<cr>
-" au BufWrite * :Autoformat
-"let g:autoformat_verbosemode=1
-let g:autoformat_autoindent = 0
-let g:autoformat_retab = 0
-let g:autoformat_remove_trailing_spaces = 0
-let g:formatdef_my_custom_cpp = '"clang-format --style=Google"'
-let g:formatters_c = ['my_custom_cpp']
-let g:formatters_cpp = ['my_custom_cpp']
 
 """""""""""""" sonokai
 " Important!!

@@ -140,3 +140,5 @@ nmap <leader>e :CocCommand explorer<CR>
 
 " Coc pairs
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+noremap <F3> :Format<cr>
