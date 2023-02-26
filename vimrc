@@ -1,24 +1,11 @@
+set nocompatible
+"let g:ale_completion_enabled = 1
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-Plug 'sainnhe/sonokai'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'dense-analysis/ale'
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
-
-
-"""""""""""""" sonokai
-" Important!!
-if has('termguicolors')
-  set termguicolors
-endif
-" The configuration options should be placed before `colorscheme sonokai`.
-let g:sonokai_style = 'andromeda'
-" let g:sonokai_enable_italic = 1
-let g:sonokai_disable_italic_comment = 1
-
-""""""""""""" airline
-let g:airline#extensions#hunks#enabled = 0
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Remap leader
 let mapleader = ','
@@ -34,8 +21,10 @@ set nowritebackup
 set nu
 set belloff=all
 
+set termguicolors
 set background=dark
-colorscheme sonokai
+colorscheme desert
+syntax on
 
 set splitright
 set splitbelow
@@ -68,11 +57,13 @@ if has('gui_macvim')
   set guifont=Monaco:h14     " OSX.
 endif
 
-source ~/.myvimrc/coc.vim
-source ~/.myvimrc/python.vim
-source ~/.myvimrc/cpp.vim
-source ~/.myvimrc/js.vim
-source ~/.myvimrc/java.vim
+" Trailing ws
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 " LeaderF
 " don't show the help in normal mode
@@ -95,17 +86,29 @@ noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
 noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
 noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 
-noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
-noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+"noremap <leader>fb :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
+"noremap <leader>ff :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
 " search visually selected text literally
-" xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
-" noremap go :<C-U>Leaderf! rg --recall<CR>
+xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
+noremap go :<C-U>Leaderf! rg --recall<CR>
 
 " should use `Leaderf gtags --update` first
-" let g:Lf_GtagsAutoGenerate = 0
-" let g:Lf_Gtagslabel = 'native-pygments'
-"noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
-"noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
-"noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
-"noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
-"noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+let g:Lf_GtagsAutoGenerate = 0
+let g:Lf_Gtagslabel = 'native-pygments'
+noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+
+" airline
+let g:airline#extensions#hunks#enabled = 0
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ALE
+let g:ale_linters = {'c': ['clang']}
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" C language
+autocmd FileType c so ~/.vim/myvim/c.vim
