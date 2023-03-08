@@ -41,7 +41,7 @@ set splitright
 set splitbelow
 
 set colorcolumn=80
-hi ColorColumn ctermbg=grey guibg=lightgrey
+hi ColorColumn ctermbg=grey guibg=darkgrey
 
 " Give more space for displaying messages.
 set cmdheight=2
@@ -75,6 +75,10 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+
+" Load local .vimrc
+set exrc
+set secure
 
 " LeaderF
 " don't show the help in normal mode
@@ -121,12 +125,6 @@ let g:ale_linters = {'c': ['clang']}
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-" C language
-autocmd FileType c so ~/.vim/myvim/c.vim
-
-" Rust
-let g:rustfmt_autosave = 1
-
 " YCM
 highlight PMenu ctermfg=0 ctermbg=242 guifg=black guibg=darkgrey
 highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
@@ -139,3 +137,12 @@ let g:ycm_key_invoke_completion = '<c-m>'
 set completeopt=menu,menuone
 
 noremap <c-m> <NOP>
+
+""""""""""""""""language specific""""""""""""""""
+"C language
+autocmd FileType c so ~/.vim/myvim/c.vim
+autocmd FileType cpp so ~/.vim/myvim/cpp.vim
+
+" Rust
+let g:rustfmt_autosave = 1
+
