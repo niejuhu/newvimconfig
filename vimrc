@@ -81,7 +81,8 @@ set exrc
 set secure
 
 " LeaderF
-" don't show the help in normal mode
+""""""""""""""""""""
+"don't show the help in normal mode
 let g:Lf_HideHelp = 1
 let g:Lf_UseCache = 0
 " let g:Lf_UseVersionControlTool = 0
@@ -122,6 +123,7 @@ let g:airline#extensions#hunks#enabled = 0
 
 " ALE
 let g:ale_linters = {'c': ['clang']}
+let g:ale_virtualtext_cursor = 0
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
@@ -145,4 +147,3 @@ autocmd FileType cpp so ~/.vim/myvim/cpp.vim
 
 " Rust
 let g:rustfmt_autosave = 1
-
