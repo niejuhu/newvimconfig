@@ -9,6 +9,7 @@ Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'rust-lang/rust.vim'
 Plug 'vim-scripts/peaksea'
+Plug 'ntpeters/vim-better-whitespace'
 call plug#end()
 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -67,14 +68,6 @@ set hlsearch
 if has('gui_macvim')
   set guifont=Monaco:h14     " OSX.
 endif
-
-" Trailing ws
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
 
 " Load local .vimrc
 set exrc
@@ -138,6 +131,11 @@ let g:ycm_complete_in_strings=1
 let g:ycm_key_invoke_completion = '<c-z>'
 set completeopt=menu,menuone
 noremap <c-z> <NOP>
+let g:ycm_auto_hover=''
+nmap <leader>c <plug>(YCMHover)
+
+" StripWhitespace
+let g:show_spaces_that_precede_tabs=1
 
 """"""""""""""""language specific""""""""""""""""
 "C language
