@@ -133,6 +133,16 @@ set completeopt=menu,menuone
 noremap <c-z> <NOP>
 let g:ycm_auto_hover=''
 nmap <leader>c <plug>(YCMHover)
+let g:ycm_semantic_triggers =  {
+			\ 'c,cpp,python,java,javascript': ['re!\w{2}'],
+			\ }
+let g:ycm_filetype_whitelist = {
+			\ "c":1,
+			\ "cpp":1,
+			\ "python":1,
+			\ "sh":1,
+			\ "zsh":1,
+			\ }
 
 " StripWhitespace
 let g:show_spaces_that_precede_tabs=1
