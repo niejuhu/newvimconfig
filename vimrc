@@ -151,6 +151,7 @@ let g:show_spaces_that_precede_tabs=1
 "C language
 autocmd FileType c so ~/.vim/myvim/c.vim
 autocmd FileType cpp so ~/.vim/myvim/cpp.vim
+autocmd FileType java so ~/.vim/myvim/java.vim
 
 " Rust
 let g:rustfmt_autosave = 1
