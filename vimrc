@@ -114,6 +114,9 @@ noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 let g:airline#extensions#hunks#enabled = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" auto-pairs
+let g:AutoPairsMultilineClose = 0
+
 " ALE
 let g:ale_linters = {'c': ['clang']}
 let g:ale_virtualtext_cursor = 0
@@ -149,7 +152,7 @@ let g:show_spaces_that_precede_tabs=1
 
 """"""""""""""""language specific""""""""""""""""
 "C language
-autocmd FileType c so ~/.vim/myvim/c.vim
+autocmd FileType c,asm so ~/.vim/myvim/c.vim
 autocmd FileType cpp so ~/.vim/myvim/cpp.vim
 autocmd FileType java so ~/.vim/myvim/java.vim
 
