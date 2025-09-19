@@ -114,30 +114,6 @@ let g:ale_completion_enabled = 1
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-" YCM
-highlight PMenu ctermfg=0 ctermbg=242 guifg=black guibg=darkgrey
-highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_min_num_identifier_candidate_chars = 2
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_complete_in_strings=1
-let g:ycm_key_invoke_completion = '<c-z>'
-set completeopt=menu,menuone
-noremap <c-z> <NOP>
-let g:ycm_auto_hover=''
-nmap <leader>c <plug>(YCMHover)
-let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,python,java,javascript': ['re!\w{2}'],
-			\ }
-let g:ycm_filetype_whitelist = {
-			\ "c":1,
-			\ "cpp":1,
-			\ "python":1,
-			\ "sh":1,
-			\ "zsh":1,
-			\ }
-
 " StripWhitespace
 let g:show_spaces_that_precede_tabs=1
 
