@@ -1,22 +1,15 @@
 set nocompatible
 filetype off
 
-"let g:ale_completion_enabled = 1
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'rust-lang/rust.vim'
-Plug 'vim-scripts/peaksea'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'embear/vim-localvimrc'
 call plug#end()
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'ycm-core/YouCompleteMe'
-call vundle#end()
 
 " Remap leader
 let mapleader = ','
@@ -32,9 +25,6 @@ set nowritebackup
 set nu
 set belloff=all
 
-set termguicolors
-set background=dark
-colorscheme desert
 syntax on
 filetype plugin indent on
 
@@ -120,6 +110,7 @@ let g:AutoPairsMultilineClose = 0
 " ALE
 let g:ale_linters = {'c': ['clang']}
 let g:ale_virtualtext_cursor = 0
+let g:ale_completion_enabled = 1
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
@@ -150,11 +141,16 @@ let g:ycm_filetype_whitelist = {
 " StripWhitespace
 let g:show_spaces_that_precede_tabs=1
 
+" localvimrc
+let g:localvimrc_ask=0
+let g:localvimrc_name = [".lvimrc", ".vimrc"]
+
 """"""""""""""""language specific""""""""""""""""
 "C language
 autocmd FileType c,asm so ~/.vim/myvim/c.vim
 autocmd FileType cpp so ~/.vim/myvim/cpp.vim
 autocmd FileType java so ~/.vim/myvim/java.vim
+au BufNewFile,BufRead *.bp so ~/.vim/myvim/c.vim
 
 " Rust
 let g:rustfmt_autosave = 1
